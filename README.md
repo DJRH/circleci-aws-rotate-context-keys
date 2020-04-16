@@ -16,7 +16,8 @@ This is the only command available in this orb. It rotates the AWS access keys f
 - `circleci-token` - CircleCI API token used to update environment variables
 - `circleci-context` - The organisation context containing the AWS key environment variables to replace
 - `aws-access-key-id-var` - name of the CircleCI environment variable which holds a value of the aws access key id, e.g. `AWS_ACCESS_KEY_ID`
-- `aws-secret-access-key-var` - name of the CircleCI environment variable which holds a value of the aws secret access key, e.g. `AWS_SECRET_ACCESS_KEY`. 
+- `aws-secret-access-key-var` - name of the CircleCI environment variable which holds a value of the aws secret access key, e.g. `AWS_SECRET_ACCESS_KEY`
+- `vcs-type` - The version control system in use (to be passed to CircleCI CLI). Defaults to `github`.
 
 ## Examples
 Make sure you have the following environment variables set up in CircleCI:
