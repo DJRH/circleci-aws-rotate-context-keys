@@ -51,8 +51,8 @@ commands:
             new_secret_access_key=`echo $create_access_key_output | jq -r -e '.AccessKey.SecretAccessKey'` &&
             circleci context remove-secret << parameters.vcs-type >> $CIRCLE_PROJECT_USERNAME << parameters.circleci-context >> << parameters.aws-access-key-id-var >> --token << parameters.circleci-token >> &&
             circleci context remove-secret << parameters.vcs-type >> $CIRCLE_PROJECT_USERNAME << parameters.circleci-context >> << parameters.aws-secret-access-key-var >> --token << parameters.circleci-token >> &&
-            echo $new_access_key_id | circleci context store-secret << parameters.vcs-type >> $CIRCLE_PROJECT_USERNAME << parameters.circleci-context >> << parameters.aws-access-key-id-var >> --token << parameters.circleci-token >> &&
-            echo $new_secret_access_key | circleci context store-secret << parameters.vcs-type >> $CIRCLE_PROJECT_USERNAME << parameters.circleci-context >> << parameters.aws-secret-access-key-var >> --token << parameters.circleci-token >> &&
+            echo $new_access_key_id | tr -d '\n' | circleci context store-secret << parameters.vcs-type >> $CIRCLE_PROJECT_USERNAME << parameters.circleci-context >> << parameters.aws-access-key-id-var >> --token << parameters.circleci-token >> &&
+            echo $new_secret_access_key | tr -d '\n' | circleci context store-secret << parameters.vcs-type >> $CIRCLE_PROJECT_USERNAME << parameters.circleci-context >> << parameters.aws-secret-access-key-var >> --token << parameters.circleci-token >> &&
             aws iam delete-access-key --user-name << parameters.aws-username >> --access-key-id ${old_access_key_id} &&
             echo &&
             # Although the new token is visible on the aws API, aws does not accept it
